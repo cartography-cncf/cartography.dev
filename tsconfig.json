@@ -17,6 +17,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -31,6 +32,9 @@
       ],
       "@/ui/*": [
         "src/ui/*"
+      ],
+      "@subframe/core": [
+        "./src/subframe/core"
       ]
     }
   },

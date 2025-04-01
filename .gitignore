@@ -37,3 +37,6 @@ next-env.d.ts
 # subframe
 .subframe/access-token
 .subframe/
+
+# Local Netlify folder
+.netlify

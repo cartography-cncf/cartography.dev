@@ -9,6 +9,7 @@
  */
 
 import React from "react";
+import Image from "next/image";
 import * as SubframeCore from "@subframe/core";
 import { SidebarWithSections } from "../components/SidebarWithSections";
 import { FeatherHome } from "@subframe/core";
@@ -53,9 +54,12 @@ const DefaultPageLayoutRoot = React.forwardRef<
       <SidebarWithSections
         className="mobile:hidden"
         header={
-          <img
+          <Image
             className="h-6 flex-none object-cover"
             src="/images/default-avatar.png"
+            alt="Default avatar"
+            width={24}
+            height={24}
           />
         }
         footer={

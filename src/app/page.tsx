@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Badge } from "@/ui/components/Badge";
 import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { Button } from "@/ui/components/Button";
@@ -18,9 +19,12 @@ function About() {
       <TopbarWithRightNav
         leftSlot={
           <>
-            <img
+            <Image
               className="h-6 flex-none object-cover"
               src="/images/topbar-logo.svg"
+              alt="Cartography logo"
+              width={24}
+              height={24}
             />
             <Badge variant="neutral">Cartography</Badge>
           </>
@@ -41,9 +45,13 @@ function About() {
       />
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-24 shadow-lg mobile:px-4 mobile:py-12">
         <div className="flex w-full max-w-[768px] flex-col items-center gap-4">
-          <img
+          <Image
             className="w-full max-w-[448px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[320px] mobile:flex-none"
             src="/images/cartography-logo.svg"
+            alt="Cartography logo"
+            width={448}
+            height={448}
+            priority
           />
           <span className="text-heading-3 font-heading-3 text-neutral-400 text-center mobile:text-body mobile:font-body">
             Cartography is an open source tool that maps your infrastructure
@@ -76,9 +84,12 @@ function About() {
           Created at
         </span>
         <div className="flex flex-wrap items-start justify-center gap-8">
-          <img
+          <Image
             className="w-12 flex-none"
             src="/images/lyft-logo.png"
+            alt="Lyft logo"
+            width={48}
+            height={48}
           />
         </div>
       </div>
@@ -87,21 +98,33 @@ function About() {
           Used by
         </span>
         <div className="flex flex-wrap items-center justify-center gap-7 mobile:flex-row mobile:flex-wrap mobile:gap-4">
-          <img
+          <Image
             className="h-12 flex-none object-contain"
             src="/images/lyft-logo.png"
+            alt="Lyft logo"
+            width={48}
+            height={48}
           />
-          <img
+          <Image
             className="h-12 flex-none object-contain"
             src="/images/company1.png"
+            alt="Company 1 logo"
+            width={48}
+            height={48}
           />
-          <img
+          <Image
             className="h-12 flex-none object-contain"
             src="/images/company2.png"
+            alt="Company 2 logo"
+            width={48}
+            height={48}
           />
-          <img
+          <Image
             className="h-12 flex-none object-contain"
             src="/images/company3.svg"
+            alt="Company 3 logo"
+            width={48}
+            height={48}
           />
         </div>
         <span className="text-heading-2 font-heading-2 text-default-font text-center mobile:text-heading-3 mobile:font-heading-3">
@@ -216,9 +239,12 @@ function About() {
         </div>
       </div>
       <div className="flex flex-col flex-wrap items-center justify-center gap-8 bg-default-background px-6 mobile:px-4 mobile:py-0">
-        <img
+        <Image
           className="w-full max-w-[288px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[192px] mobile:flex-none"
           src="/images/cncf-logo.svg"
+          alt="CNCF logo"
+          width={288}
+          height={288}
         />
         <span className="text-body font-body text-subtext-color text-center">
           We are a <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">Cloud Native Computing Foundation Sandbox project</a>.
