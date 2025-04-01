@@ -85,7 +85,7 @@ function About() {
         </span>
         <div className="flex flex-wrap items-start justify-center gap-8">
           <Image
-            className="w-12 flex-none"
+            className="h-12 w-12 flex-none object-contain"
             src="/images/lyft-logo.png"
             alt="Lyft logo"
             width={48}
@@ -99,32 +99,32 @@ function About() {
         </span>
         <div className="flex flex-wrap items-center justify-center gap-7 mobile:flex-row mobile:flex-wrap mobile:gap-4">
           <Image
-            className="h-12 flex-none object-contain"
+            className="h-16 w-16 flex-none object-contain"
             src="/images/lyft-logo.png"
             alt="Lyft logo"
-            width={48}
-            height={48}
+            width={64}
+            height={64}
           />
           <Image
-            className="h-12 flex-none object-contain"
+            className="h-32 w-32 flex-none object-contain"
             src="/images/company1.png"
             alt="Company 1 logo"
-            width={48}
-            height={48}
+            width={128}
+            height={128}
           />
           <Image
-            className="h-12 flex-none object-contain"
+            className="h-32 w-32 flex-none object-contain"
             src="/images/company2.png"
             alt="Company 2 logo"
-            width={48}
-            height={48}
+            width={128}
+            height={128}
           />
           <Image
-            className="h-12 flex-none object-contain"
+            className="h-32 w-32 flex-none object-contain"
             src="/images/company3.svg"
             alt="Company 3 logo"
-            width={48}
-            height={48}
+            width={128}
+            height={128}
           />
         </div>
         <span className="text-heading-2 font-heading-2 text-default-font text-center mobile:text-heading-3 mobile:font-heading-3">

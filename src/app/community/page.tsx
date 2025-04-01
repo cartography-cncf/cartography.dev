@@ -95,9 +95,9 @@ function Community() {
                   <Image
                     src={card.image}
                     alt={card.description}
-                    width={48}
-                    height={48}
-                    className="h-12 w-12 flex-none object-contain"
+                    width={160}
+                    height={160}
+                    className="h-40 w-40 flex-none object-contain"
                   />
                   <span className="grow shrink-0 basis-0 text-body font-body text-subtext-color">
                     {card.description}

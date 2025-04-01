@@ -55,7 +55,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
         className="mobile:hidden"
         header={
           <Image
-            className="h-6 flex-none object-cover"
+            className="h-6 w-6 flex-none rounded-full object-cover"
             src="/images/default-avatar.png"
             alt="Default avatar"
             width={24}
