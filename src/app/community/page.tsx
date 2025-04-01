@@ -89,9 +89,9 @@ function Community() {
                 href={card.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full max-w-[768px] flex-wrap items-center gap-8 rounded-lg bg-neutral-50 px-6 py-6 shadow-lg transition-all hover:shadow-xl hover:bg-neutral-100 mobile:rounded-lg mobile:bg-neutral-50"
+                className="flex w-full max-w-[768px] flex-wrap items-center gap-4 rounded-lg bg-neutral-50 px-4 py-3 shadow-lg transition-all hover:shadow-xl hover:bg-neutral-100 mobile:rounded-lg mobile:bg-neutral-50"
               >
-                <div className="flex grow shrink-0 basis-0 items-center gap-6 px-2 py-2">
+                <div className="flex grow shrink-0 basis-0 items-center gap-4">
                   <Image
                     src={card.image}
                     alt={card.description}
