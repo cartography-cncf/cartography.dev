@@ -55,13 +55,13 @@ const DefaultPageLayoutRoot = React.forwardRef<
         header={
           <img
             className="h-6 flex-none object-cover"
-            src="https://res.cloudinary.com/subframe/image/upload/v1711417507/shared/y2rsnhq3mex4auk54aye.png"
+            src="/images/default-avatar.png"
           />
         }
         footer={
           <>
             <div className="flex grow shrink-0 basis-0 items-start gap-2">
-              <Avatar image="https://res.cloudinary.com/subframe/image/upload/v1711417513/shared/kwut7rhuyivweg8tmyzl.jpg">
+              <Avatar image="/images/user-avatar.jpg">
                 A
               </Avatar>
               <div className="flex flex-col items-start">
