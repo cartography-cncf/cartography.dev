@@ -2,8 +2,16 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Subframe Next.js Starter",
-  description: "Your starter kit for integrating Subframe into Next.js",
+  title: "Cartography",
+  description: "An open source tool that maps your infrastructure",
+  icons: {
+    icon: [
+      {
+        url: "/images/cartography-black-icon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
