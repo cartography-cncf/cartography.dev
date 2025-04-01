@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: Inter;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  flex-grow: 1;
+}
+
+/* Content link styling */
+.content-link {
+  @apply text-brand-600 hover:text-brand-700;
+}
