@@ -12,6 +12,7 @@ import { FeatherDatabase } from "@subframe/core";
 import { FeatherNetwork } from "@subframe/core";
 import { FeatherShieldCheck } from "@subframe/core";
 import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
+import { GitHubStars } from "@/ui/components/GitHubStars";
 
 function About() {
   return (
@@ -71,6 +72,7 @@ function About() {
             variant="neutral-secondary"
             size="large"
             icon={<FeatherGithub />}
+            iconRight={<GitHubStars />}
             onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
               window.location.href = 'https://github.com/cartography-cncf/cartography';
             }}
@@ -263,6 +265,7 @@ function About() {
           <Button
             size="large"
             icon={<FeatherGithub />}
+            iconRight={<GitHubStars />}
             onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
               window.location.href = 'https://github.com/cartography-cncf/cartography';
             }}
