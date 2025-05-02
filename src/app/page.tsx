@@ -135,6 +135,21 @@ function About() {
           and many, many others.
         </span>
       </div>
+
+
+      <div className="flex flex-col flex-wrap items-center justify-center gap-8  mt-4 px-6 mobile:px-4 mobile:py-0">
+          <span className="text-body font-body text-subtext-color text-center">
+            We are a <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">Cloud Native Computing Foundation Sandbox project</a>.
+          </span>
+          <Image
+            className="w-full max-w-[200px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[192px] mobile:flex-none"
+            src="/images/cncf-logo.svg"
+            alt="CNCF logo"
+            width={200}
+            height={200}
+          />
+        </div>
+
       <div className="flex flex-col flex-wrap items-center justify-center gap-8 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg mobile:px-4 mobile:py-12">
         <div className="flex flex-col flex-wrap items-start justify-center gap-8">
           <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
@@ -241,18 +256,6 @@ function About() {
             <a href="https://www.youtube.com/watch?v=F4EFHK21Et0" target="_blank" className="content-link">Container vuln management with minimal burnout (BSidesSF2023):</a>
           </span>
         </div>
-      </div>
-      <div className="flex flex-col flex-wrap items-center justify-center gap-8 bg-default-background px-6 mobile:px-4 mobile:py-0">
-        <Image
-          className="w-full max-w-[288px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[192px] mobile:flex-none"
-          src="/images/cncf-logo.svg"
-          alt="CNCF logo"
-          width={288}
-          height={288}
-        />
-        <span className="text-body font-body text-subtext-color text-center">
-          We are a <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">Cloud Native Computing Foundation Sandbox project</a>.
-        </span>
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-24 shadow-lg mobile:px-4 mobile:py-12">
         <div className="flex w-full max-w-[768px] flex-col items-center gap-8">
