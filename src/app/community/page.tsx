@@ -32,10 +32,13 @@ function Community() {
         className="mobile:flex"
         leftSlot={
           <>
-            <img
-              className="h-6 flex-none object-cover"
-              src="/images/topbar-logo.svg"
-            />
+            <a href="/">
+              <img
+                className="h-6 flex-none object-cover"
+                src="/images/topbar-logo.svg"
+                alt="Cartography logo"
+              />
+            </a>
             <Badge variant="neutral">Cartography</Badge>
           </>
         }

@@ -1,9 +1,16 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cartography",
-  description: "An open source tool that maps your infrastructure",
+  title: "Cartography - Open Source Infrastructure Mapping Tool",
+  description: "Cartography is an open source tool that maps your infrastructure, helping you visualize relationships between services, resources, and infrastructure components.",
+  metadataBase: new URL('https://cartography.dev'),
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: [
       {
@@ -35,7 +42,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
