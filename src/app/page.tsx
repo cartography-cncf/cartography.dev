@@ -20,13 +20,15 @@ function About() {
       <TopbarWithRightNav
         leftSlot={
           <>
-            <Image
-              className="h-6 flex-none object-cover"
-              src="/images/topbar-logo.svg"
-              alt="Cartography logo"
-              width={24}
-              height={24}
-            />
+            <a href="/">
+              <Image
+                className="h-6 flex-none object-cover"
+                src="/images/topbar-logo.svg"
+                alt="Cartography logo"
+                width={24}
+                height={24}
+              />
+            </a>
             <Badge variant="neutral">Cartography</Badge>
           </>
         }
@@ -54,9 +56,9 @@ function About() {
             height={448}
             priority
           />
-          <span className="text-heading-3 font-heading-3 text-neutral-400 text-center mobile:text-body mobile:font-body">
-            Cartography is an open source tool that maps your infrastructure
-          </span>
+          <h1 className="text-heading-3 font-heading-3 text-neutral-400 text-center mobile:text-body mobile:font-body">
+            Cartography: Open Source Infrastructure Mapping Tool
+          </h1>
         </div>
         <div className="flex items-center gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
           <Button
@@ -82,9 +84,9 @@ function About() {
         </div>
       </div>
       <div className="flex flex-col flex-wrap items-center justify-center gap-8 bg-default-background px-6 mobile:px-4 mobile:py-0">
-        <span className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
+        <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
           Created at
-        </span>
+        </h2>
         <div className="flex flex-wrap items-start justify-center gap-8">
           <Image
             className="h-12 w-12 flex-none object-contain"
@@ -96,9 +98,9 @@ function About() {
         </div>
       </div>
       <div className="flex flex-col flex-wrap items-center justify-center gap-6 bg-default-background px-6 py-12 mobile:px-4 mobile:py-12">
-        <span className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
+        <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
           Used by
-        </span>
+        </h2>
         <div className="flex flex-wrap items-center justify-center gap-7 mobile:flex-row mobile:flex-wrap mobile:gap-4">
           <Image
             className="h-16 w-16 flex-none object-contain"
@@ -135,9 +137,9 @@ function About() {
       </div>
       <div className="flex flex-col flex-wrap items-center justify-center gap-8 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg mobile:px-4 mobile:py-12">
         <div className="flex flex-col flex-wrap items-start justify-center gap-8">
-          <span className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
+          <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
             Why Cartography?
-          </span>
+          </h2>
         </div>
         <div className="flex max-w-[768px] flex-col flex-wrap items-start justify-center gap-8">
           <span className="text-body font-body text-subtext-color">
@@ -255,9 +257,9 @@ function About() {
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-24 shadow-lg mobile:px-4 mobile:py-12">
         <div className="flex w-full max-w-[768px] flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-4">
-            <span className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
+            <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
               Join Our Community
-            </span>
+            </h2>
             <span className="text-body font-body text-subtext-color text-center">
               View source, read our discussions, join our Slack
             </span>
