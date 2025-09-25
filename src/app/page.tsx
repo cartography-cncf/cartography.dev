@@ -111,6 +111,20 @@ function About() {
           />
           <Image
             className="h-32 w-32 flex-none object-contain"
+            src="/images/intel-logo.png"
+            alt="Intel logo"
+            width={128}
+            height={128}
+          />
+          <Image
+            className="h-32 w-32 flex-none object-contain"
+            src="/images/foursquare-logo.png"
+            alt="Foursquare logo"
+            width={128}
+            height={128}
+          />
+          <Image
+            className="h-32 w-32 flex-none object-contain"
             src="/images/company1.png"
             alt="Company 1 logo"
             width={128}
