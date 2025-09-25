@@ -101,7 +101,7 @@ function About() {
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
           Used by
         </h2>
-        <div className="flex flex-wrap items-center justify-center gap-7 mobile:flex-row mobile:flex-wrap mobile:gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-7 mobile:gap-4 max-w-4xl mx-auto">
           <Image
             className="h-16 w-16 flex-none object-contain"
             src="/images/lyft-logo.png"
@@ -122,6 +122,13 @@ function About() {
             alt="Foursquare logo"
             width={128}
             height={128}
+          />
+          <Image
+            className="h-24 w-24 flex-none object-contain"
+            src="/images/seatgeek-logo.png"
+            alt="SeatGeek logo"
+            width={96}
+            height={96}
           />
           <Image
             className="h-32 w-32 flex-none object-contain"
