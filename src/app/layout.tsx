@@ -17,6 +17,10 @@ export const metadata: Metadata = {
         url: "/images/cartography-black-icon.svg",
         type: "image/svg+xml",
       },
+      {
+        url: "/favicon.ico",
+        sizes: "32x32",
+      },
     ],
   },
 };
