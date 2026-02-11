@@ -38,7 +38,10 @@ function About() {
               <a href="/">About</a>
             </TopbarWithRightNav.NavItem>
             <TopbarWithRightNav.NavItem>
-                <a href="community">Community</a>
+                <a href="/blog">Blog</a>
+            </TopbarWithRightNav.NavItem>
+            <TopbarWithRightNav.NavItem>
+                <a href="/community">Community</a>
             </TopbarWithRightNav.NavItem>
             <TopbarWithRightNav.NavItem>
                 <a href="https://cartography-cncf.github.io/cartography/">Docs</a>
@@ -310,7 +313,10 @@ function About() {
             </div>
             <div className="flex items-center justify-end gap-2">
               <TopbarWithRightNav.NavItem>
-                <a href="community">Community</a>
+                <a href="/blog">Blog</a>
+              </TopbarWithRightNav.NavItem>
+              <TopbarWithRightNav.NavItem>
+                <a href="/community">Community</a>
               </TopbarWithRightNav.NavItem>
               <TopbarWithRightNav.NavItem>
                 <a href="https://cartography-cncf.github.io/cartography/">Docs</a>

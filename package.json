@@ -11,9 +11,12 @@
   "dependencies": {
     "@subframe/core": "^1.141.0",
     "classnames": "^2.3.2",
+    "gray-matter": "^4.0.3",
     "next": "^14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@types/node": "20.17.30",
