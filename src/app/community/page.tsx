@@ -47,8 +47,11 @@ function Community() {
             <TopbarWithRightNav.NavItem>
               <a href="/">About</a>
             </TopbarWithRightNav.NavItem>
+            <TopbarWithRightNav.NavItem>
+                <a href="/blog">Blog</a>
+            </TopbarWithRightNav.NavItem>
             <TopbarWithRightNav.NavItem selected={true}>
-                <a href="community">Community</a>
+                <a href="/community">Community</a>
             </TopbarWithRightNav.NavItem>
             <TopbarWithRightNav.NavItem>
                 <a href="https://cartography-cncf.github.io/cartography/">Docs</a>
