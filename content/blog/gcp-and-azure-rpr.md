@@ -1,5 +1,5 @@
 ---
-title: "Extending Cartography’s RPR to Azure and GCP: My LFX Mentorship Journey"
+title: "Cartography Now Maps Permissions Across All Three Major Clouds: My LFX Mentorship Journey"
 date: "2026-02-14"
 summary: "How I extended Cartography's Resource Permission Relationships feature from AWS to Azure and GCP during my LFX Mentorship, enabling security teams to query 'who can access what' across all three clouds."
 author: "Daksh Rathore"
