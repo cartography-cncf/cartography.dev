@@ -1,7 +1,27 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { BlogNav } from "./BlogNav";
+
+export const metadata: Metadata = {
+  title: "Blog | Cartography",
+  description:
+    "Project updates, technical deep dives, and community stories from the Cartography team.",
+  openGraph: {
+    title: "Cartography Blog",
+    description:
+      "Project updates, technical deep dives, and community stories from the Cartography team.",
+    type: "website",
+    siteName: "Cartography",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cartography Blog",
+    description:
+      "Project updates, technical deep dives, and community stories from the Cartography team.",
+  },
+};
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString + "T00:00:00");

@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
+import type { Metadata } from "next";
+import { getAllPostSlugs, getPostBySlug, getPostMeta } from "@/lib/blog";
 import { BlogNav } from "../BlogNav";
 
 function formatDate(dateString: string): string {
@@ -16,6 +17,37 @@ function formatDate(dateString: string): string {
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
   return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = getPostMeta(params.slug);
+  if (!post) return {};
+
+  const title = `${post.title} | Cartography Blog`;
+  const description = post.summary;
+
+  return {
+    title,
+    description,
+    authors: post.author ? [{ name: post.author }] : undefined,
+    openGraph: {
+      title: post.title,
+      description,
+      type: "article",
+      publishedTime: post.date,
+      authors: post.author ? [post.author] : undefined,
+      siteName: "Cartography",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+    },
+  };
 }
 
 export default async function BlogPostPage({

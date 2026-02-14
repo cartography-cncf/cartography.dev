@@ -75,3 +75,25 @@ export function getAllPostSlugs(): string[] {
     .filter((fileName) => fileName.endsWith(".md"))
     .map((fileName) => fileName.replace(/\.md$/, ""));
 }
+
+export function getPostMeta(
+  slug: string
+): Omit<BlogPost, "content"> | null {
+  const fullPath = path.join(blogDirectory, `${slug}.md`);
+
+  if (!fs.existsSync(fullPath)) {
+    return null;
+  }
+
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data } = matter(fileContents);
+
+  return {
+    slug,
+    title: data.title,
+    date: data.date,
+    summary: data.summary,
+    author: data.author,
+    authorUrl: data.authorUrl,
+  };
+}
