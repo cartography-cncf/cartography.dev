@@ -6,7 +6,7 @@ author: "Daksh Rathore"
 authorUrl: "https://www.linkedin.com/in/daksh-rathore"
 ---
 
-Earlier this year (2025), I got the chance to jump into the Linux Foundation’s [LFX Mentorship program (Term 3)](https://mentorship.lfx.linuxfoundation.org/project/6e60c1da-b78a-40c5-b527-613c00375e72) and work on [Cartography](https://github.com/cartography-cncf/cartography) — this super cool open-source security tool that throws all your technical assets and their relationships into a graph database. My goal was to extend Cartography’s Resource Permission Relationships (RPR) feature ([which was AWS-only at the time](https://eng.lyft.com/iam-whatever-you-say-iam-febce59d1e3b)) to also work with [Azure](https://github.com/cartography-cncf/cartography/issues/1735) and [Google Cloud Platform (GCP)](https://github.com/cartography-cncf/cartography/issues/1734).
+Last fall (2025), I got the chance to jump into the Linux Foundation’s [LFX Mentorship program (Term 3)](https://mentorship.lfx.linuxfoundation.org/project/6e60c1da-b78a-40c5-b527-613c00375e72) and work on [Cartography](https://github.com/cartography-cncf/cartography) — this super cool open-source security tool that throws all your technical assets and their relationships into a graph database. My goal was to extend Cartography’s Resource Permission Relationships (RPR) feature ([which was AWS-only at the time](https://eng.lyft.com/iam-whatever-you-say-iam-febce59d1e3b)) to also work with [Azure](https://github.com/cartography-cncf/cartography/issues/1735) and [Google Cloud Platform (GCP)](https://github.com/cartography-cncf/cartography/issues/1734).
 
 ## What is Cartography?
 
