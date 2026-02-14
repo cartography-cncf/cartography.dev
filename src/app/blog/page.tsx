@@ -29,10 +29,9 @@ export default function BlogPage() {
         </div>
         <div className="flex w-full flex-col gap-6">
           {posts.map((post) => (
-            <Link
+            <div
               key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group flex w-full flex-col gap-3 rounded-lg bg-neutral-50 px-6 py-6 shadow-lg transition-all hover:shadow-xl hover:bg-neutral-100"
+              className="flex w-full flex-col gap-3 rounded-lg bg-neutral-50 px-6 py-6 shadow-lg transition-all hover:shadow-xl hover:bg-neutral-100"
             >
               <div className="flex items-center gap-3">
                 <time className="text-caption font-caption text-subtext-color">
@@ -41,24 +40,40 @@ export default function BlogPage() {
                 {post.author && (
                   <>
                     <span className="text-caption text-neutral-300">·</span>
-                    <span className="text-caption font-caption text-subtext-color">
-                      {post.author}
-                    </span>
+                    {post.authorUrl ? (
+                      <a
+                        href={post.authorUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-caption font-caption text-brand-600 hover:text-brand-700 transition-colors"
+                      >
+                        {post.author}
+                      </a>
+                    ) : (
+                      <span className="text-caption font-caption text-subtext-color">
+                        {post.author}
+                      </span>
+                    )}
                   </>
                 )}
               </div>
-              <h2 className="text-heading-2 font-heading-2 text-default-font group-hover:text-brand-700 transition-colors">
-                {post.title}
-              </h2>
+              <Link href={`/blog/${post.slug}`}>
+                <h2 className="text-heading-2 font-heading-2 text-default-font hover:text-brand-700 transition-colors">
+                  {post.title}
+                </h2>
+              </Link>
               {post.summary && (
                 <p className="text-body font-body text-subtext-color">
                   {post.summary}
                 </p>
               )}
-              <span className="text-body font-body text-brand-700 mt-1">
+              <Link
+                href={`/blog/${post.slug}`}
+                className="text-body font-body text-brand-700 hover:text-brand-800 transition-colors mt-1"
+              >
                 Read more →
-              </span>
-            </Link>
+              </Link>
+            </div>
           ))}
         </div>
       </div>

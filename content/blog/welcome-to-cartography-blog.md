@@ -3,6 +3,7 @@ title: "Welcome to the Cartography Blog"
 date: "2025-01-15"
 summary: "Introducing the official Cartography blog — a place for project updates, technical deep dives, and community stories."
 author: "Cartography Team"
+authorUrl: "https://www.linkedin.com/company/cartography-cncf"
 ---
 
 We're excited to launch the official Cartography blog! This will be our home for sharing project updates, technical deep dives, community stories, and more.

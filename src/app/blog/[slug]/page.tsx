@@ -50,9 +50,20 @@ export default async function BlogPostPage({
             {post.author && (
               <>
                 <span className="text-caption text-neutral-300">·</span>
-                <span className="text-caption font-caption text-subtext-color">
-                  {post.author}
-                </span>
+                {post.authorUrl ? (
+                  <a
+                    href={post.authorUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-caption font-caption text-brand-600 hover:text-brand-700 transition-colors"
+                  >
+                    {post.author}
+                  </a>
+                ) : (
+                  <span className="text-caption font-caption text-subtext-color">
+                    {post.author}
+                  </span>
+                )}
               </>
             )}
           </div>
