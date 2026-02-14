@@ -24,18 +24,18 @@ export function BlogNav() {
       }
       rightSlot={
         <div className="flex items-center justify-end gap-2 mobile:flex-row mobile:flex-nowrap mobile:items-center mobile:justify-end mobile:gap-2 mobile:px-2 mobile:py-2">
-          <TopbarWithRightNav.NavItem>
-            <a href="/">About</a>
-          </TopbarWithRightNav.NavItem>
-          <TopbarWithRightNav.NavItem selected={true}>
-            <a href="/blog">Blog</a>
-          </TopbarWithRightNav.NavItem>
-          <TopbarWithRightNav.NavItem>
-            <a href="/community">Community</a>
-          </TopbarWithRightNav.NavItem>
-          <TopbarWithRightNav.NavItem>
-            <a href="https://cartography-cncf.github.io/cartography/">Docs</a>
-          </TopbarWithRightNav.NavItem>
+          <a href="/">
+            <TopbarWithRightNav.NavItem>About</TopbarWithRightNav.NavItem>
+          </a>
+          <a href="/blog">
+            <TopbarWithRightNav.NavItem selected={true}>Blog</TopbarWithRightNav.NavItem>
+          </a>
+          <a href="/community">
+            <TopbarWithRightNav.NavItem>Community</TopbarWithRightNav.NavItem>
+          </a>
+          <a href="https://cartography-cncf.github.io/cartography/">
+            <TopbarWithRightNav.NavItem>Docs</TopbarWithRightNav.NavItem>
+          </a>
         </div>
       }
     />
