@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Badge } from "@/ui/components/Badge";
 import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
+import { ThemeToggle } from "../ThemeToggle";
 
 export function BlogNav() {
   return (
@@ -12,7 +13,7 @@ export function BlogNav() {
         <>
           <a href="/">
             <Image
-              className="h-6 flex-none object-cover"
+              className="h-6 flex-none object-cover dark:invert"
               src="/images/topbar-logo.svg"
               alt="Cartography logo"
               width={24}
@@ -36,6 +37,7 @@ export function BlogNav() {
           <a href="https://cartography-cncf.github.io/cartography/">
             <TopbarWithRightNav.NavItem>Docs</TopbarWithRightNav.NavItem>
           </a>
+          <ThemeToggle />
         </div>
       }
     />

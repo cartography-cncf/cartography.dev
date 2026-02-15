@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Badge } from "@/ui/components/Badge";
 import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
+import { ThemeToggle } from "../ThemeToggle";
 
 function Community() {
   // Guidance: descriptions here should be short and plainly stated. No marketing speak.
@@ -34,7 +35,7 @@ function Community() {
           <>
             <a href="/">
               <img
-                className="h-6 flex-none object-cover"
+                className="h-6 flex-none object-cover dark:invert"
                 src="/images/topbar-logo.svg"
                 alt="Cartography logo"
               />
@@ -56,6 +57,7 @@ function Community() {
             <a href="https://cartography-cncf.github.io/cartography/">
               <TopbarWithRightNav.NavItem>Docs</TopbarWithRightNav.NavItem>
             </a>
+            <ThemeToggle />
           </div>
         }
       />

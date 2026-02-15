@@ -13,6 +13,7 @@ import { FeatherNetwork } from "@subframe/core";
 import { FeatherShieldCheck } from "@subframe/core";
 import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
 import { GitHubStars } from "@/ui/components/GitHubStars";
+import { ThemeToggle } from "./ThemeToggle";
 
 function About() {
   return (
@@ -22,7 +23,7 @@ function About() {
           <>
             <a href="/">
               <Image
-                className="h-6 flex-none object-cover"
+                className="h-6 flex-none object-cover dark:invert"
                 src="/images/topbar-logo.svg"
                 alt="Cartography logo"
                 width={24}
@@ -46,6 +47,7 @@ function About() {
             <a href="https://cartography-cncf.github.io/cartography/">
               <TopbarWithRightNav.NavItem>Docs</TopbarWithRightNav.NavItem>
             </a>
+            <ThemeToggle />
           </div>
         }
       />
