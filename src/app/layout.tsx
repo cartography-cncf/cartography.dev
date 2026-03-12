@@ -5,9 +5,6 @@ export const metadata: Metadata = {
   title: "Cartography - Open Source Infrastructure Mapping Tool",
   description: "Cartography is an open source tool that maps your infrastructure, helping you visualize relationships between services, resources, and infrastructure components.",
   metadataBase: new URL('https://cartography.dev'),
-  alternates: {
-    canonical: '/',
-  },
   icons: {
     icon: [
       {
