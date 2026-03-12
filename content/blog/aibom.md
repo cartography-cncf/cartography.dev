@@ -1,7 +1,7 @@
 ---
-title: "AI Agent Discovery in Cartography"
+title: "Mapping production AI agents to IAM roles, tools, and network exposure"
 date: "2026-03-12"
-summary: "Open source Cartography now discovers AI agents in container images and maps them into the infrastructure graph."
+summary: "Open source Cartography now discovers AI agents in container images and connects them to IAM roles, tools, and network exposure in the infrastructure graph."
 author: "Alex Chantavy"
 authorUrl: "https://www.linkedin.com/in/alexchantavy"
 ---
