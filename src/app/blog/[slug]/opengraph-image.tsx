@@ -19,6 +19,13 @@ function formatDate(dateString: string): string {
   });
 }
 
+function truncateSummary(summary: string, maxLen: number): string {
+  if (summary.length <= maxLen) return summary;
+  const truncated = summary.slice(0, maxLen);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + "...";
+}
+
 export default async function OGImage({
   params,
 }: {
@@ -110,23 +117,23 @@ export default async function OGImage({
           </span>
         </div>
 
-        {/* Title */}
+        {/* Title + summary + meta grouped together */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "16px",
+            gap: "20px",
             flex: 1,
             justifyContent: "center",
           }}
         >
           <div
             style={{
-              fontSize: post.title.length > 60 ? 40 : 52,
+              fontSize: post.title.length > 80 ? 36 : post.title.length > 50 ? 44 : 52,
               fontWeight: 700,
               color: "#171717",
               lineHeight: 1.2,
-              maxWidth: "1000px",
+              maxWidth: "1040px",
             }}
           >
             {post.title}
@@ -140,30 +147,27 @@ export default async function OGImage({
                 maxWidth: "900px",
               }}
             >
-              {post.summary.length > 140
-                ? post.summary.slice(0, 140) + "..."
-                : post.summary}
+              {truncateSummary(post.summary, 140)}
             </div>
           )}
-        </div>
-
-        {/* Bottom meta */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-            fontSize: 20,
-            color: "#737373",
-          }}
-        >
-          <span>{formatDate(post.date)}</span>
-          {post.author && (
-            <>
-              <span style={{ color: "#d4d4d4" }}>·</span>
-              <span>{post.author}</span>
-            </>
-          )}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+              fontSize: 20,
+              color: "#a3a3a3",
+              marginTop: "4px",
+            }}
+          >
+            <span>{formatDate(post.date)}</span>
+            {post.author && (
+              <>
+                <span style={{ color: "#d4d4d4" }}>·</span>
+                <span>{post.author}</span>
+              </>
+            )}
+          </div>
         </div>
       </div>
     ),
