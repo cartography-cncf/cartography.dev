@@ -233,45 +233,6 @@ function About() {
           </div>
         </div>
       </div>
-      <div className="flex w-full flex-col flex-wrap items-center justify-center gap-12 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg">
-        <div className="flex flex-col flex-wrap items-start justify-center gap-8">
-          <span className="text-heading-1 font-heading-1 text-default-font text-center">
-            Featured blogs and case studies
-          </span>
-        </div>
-        <div className="flex max-w-[768px] flex-col flex-wrap items-start justify-center gap-8">
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://eng.lyft.com/iam-whatever-you-say-iam-febce59d1e3b" target="_blank" className="content-link">IAM Whatever you say IAM</a>: using cartography to see who has access to
-            what
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://blog.marcolancini.it/2020/blog-mapping-moving-clouds-with-cartography/" target="_blank" className="content-link">Mapping Moving Clouds:
-            How to stay on top of your ephemeral environments with Cartography</a>
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://eng.lyft.com/vulnerability-management-at-lyft-enforcing-the-cascade-part-1-234d1561b994" target="_blank" className="content-link">Vulnerability Management at Lyft: Enforcing the Cascade</a>
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://eng.lyft.com/cartography-joins-the-cncf-6f6b7be099a7" target="_blank" className="content-link">Cartography joins the CNCF</a>
-          </span>
-        </div>
-        <div className="flex flex-col flex-wrap items-center justify-center gap-12">
-          <span className="text-heading-1 font-heading-1 text-default-font text-center">
-            Conference talks
-          </span>
-        </div>
-        <div className="flex max-w-[768px] flex-col flex-wrap items-start justify-center gap-8">
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://www.youtube.com/watch?v=ZukUmZSKSek" target="_blank" className="content-link">Cartography: automating security visibility and democratization (BSides 2019):</a>
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://www.youtube.com/watch?v=ZwMSkFzgiFc" target="_blank" className="content-link">Cartography: using graphs to improve and scale security decision making (CNCF Security Day 2020):</a>            
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://www.youtube.com/watch?v=F4EFHK21Et0" target="_blank" className="content-link">Container vuln management with minimal burnout (BSidesSF2023):</a>
-          </span>
-        </div>
-      </div>
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-24 shadow-lg mobile:px-4 mobile:py-12">
         <div className="flex w-full max-w-[768px] flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-4">
