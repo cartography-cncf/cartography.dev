@@ -6,16 +6,71 @@ import { Badge } from "@/ui/components/Badge";
 import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { Button } from "@/ui/components/Button";
 import { FeatherPlay } from "@subframe/core";
+import { FeatherBookOpen } from "@subframe/core";
 import { FeatherPause } from "@subframe/core";
 import { FeatherGithub } from "@subframe/core";
 import { FeatherSlack } from "@subframe/core";
 import { FeatherCalendar } from "@subframe/core";
+import { FeatherChevronDown } from "@subframe/core";
+import { FeatherChevronUp } from "@subframe/core";
 import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
 import { GitHubStars } from "@/ui/components/GitHubStars";
+
+function highlightCypher(code: string) {
+  const tokens: string[] = [];
+  const placeholder = (html: string) => {
+    const id = tokens.length;
+    tokens.push(html);
+    return `\x00T${id}T\x00`;
+  };
+
+  let result = code
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  result = result.replace(/\b(MATCH|RETURN|WHERE|WITH|LIMIT|ORDER BY|CREATE|DELETE|SET|REMOVE|MERGE|OPTIONAL MATCH|UNWIND|AS|AND|OR|NOT|IN|IS|NULL|TRUE|FALSE|CASE|WHEN|THEN|ELSE|END)\b/gi,
+    (m) => placeholder(`<span style="color:#a78bfa;font-weight:600">${m}</span>`));
+  result = result.replace(/\[:([A-Z_]+)\]/g,
+    (_, t) => `[:${placeholder(`<span style="color:#fb7185">${t}</span>`)}]`);
+  result = result.replace(/:([A-Z][A-Za-z0-9_]*)/g,
+    (_, l) => `:${placeholder(`<span style="color:#38bdf8">${l}</span>`)}`);
+  result = result.replace(/\{([^}]+)\}/g,
+    (_, p) => `{${placeholder(`<span style="color:#fcd34d">${p}</span>`)}}`);
+  result = result.replace(/\b(\d+)\b/g,
+    (m) => placeholder(`<span style="color:#34d399">${m}</span>`));
+
+  result = result.replace(/\x00T(\d+)T\x00/g, (_, i) => tokens[parseInt(i)]);
+  return result;
+}
+
+const questions = [
+  {
+    question: "Which identities have access to which datastores?",
+    cypher: `MATCH (a:AWSRole)-[r:CAN_READ]->(b:S3Bucket)\nRETURN * LIMIT 30;`,
+  },
+  {
+    question: "Am I affected by critical vulnerabilities?",
+    cypher: `MATCH (c:CVE)-[r:AFFECTS]->(i:Image)\nRETURN * LIMIT 30;`,
+  },
+  {
+    question: "What are the network paths in and out of my environment?",
+    cypher: `MATCH (dns:DNSRecord)-[r:DNS_POINTS_TO]->(lb:LoadBalancer)--(c:ECSContainer)\nRETURN * LIMIT 30;`,
+  },
+  {
+    question: "Which compute instances are exposed to the internet? How?",
+    cypher: `MATCH p = (inst:EC2Instance{exposed_internet: true})\nMATCH p2 = (inst)-[:MEMBER_OF_EC2_SECURITY_GROUP]->(sg:EC2SecurityGroup)--(r:IpRule)\nRETURN * LIMIT 30;`,
+  },
+  {
+    question: "What AI agents are running in production, and what permissions do they have?",
+    cypher: `MATCH p = (a:AIAgent)-[:DETECTED_IN]->(img:ECRImage)--(:ECRImage)--(c:ECSContainer)\nMATCH p2 = (c)<-[:HAS_CONTAINER]-(t:ECSTask)--(:ECSTaskDefinition)--(rol:AWSRole)\nMATCH p3 = (rol)--(pol:AWSPolicy)--(stmt:AWSPolicyStatement)\nRETURN * LIMIT 3;`,
+  },
+];
 
 function About() {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(true);
+  const [expandedCard, setExpandedCard] = React.useState<number | null>(null);
 
   const toggleVideo = () => {
     const video = videoRef.current;
@@ -99,7 +154,7 @@ function About() {
         <div className="flex items-center gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
           <Button
             size="large"
-            icon={<FeatherPlay />}
+            icon={<FeatherBookOpen />}
             onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
               window.location.href = 'https://cartography-cncf.github.io/cartography/';
             }}
@@ -203,32 +258,30 @@ function About() {
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
           Questions Cartography answers
         </h2>
-        <div className="flex flex-wrap justify-center gap-4 max-w-4xl w-full mobile:flex-col">
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
-            <span className="text-body font-body text-default-font">
-              Which identities have access to which datastores?
-            </span>
-          </div>
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
-            <span className="text-body font-body text-default-font">
-              Am I affected by critical vulnerabilities?
-            </span>
-          </div>
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
-            <span className="text-body font-body text-default-font">
-              What are the network paths in and out of my environment?
-            </span>
-          </div>
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
-            <span className="text-body font-body text-default-font">
-              Which compute instances are exposed to the internet?
-            </span>
-          </div>
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
-            <span className="text-body font-body text-default-font">
-              What AI agents are running in production, and what permissions do they have?
-            </span>
-          </div>
+        <div className="flex flex-wrap justify-center gap-4 max-w-5xl w-full mobile:flex-col">
+          {questions.map((q, i) => (
+            <div
+              key={i}
+              className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(50%-0.5rem)] mobile:w-full cursor-pointer transition-all hover:shadow-md"
+              onClick={() => setExpandedCard(expandedCard === i ? null : i)}
+            >
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-body font-body text-default-font">
+                  {q.question}
+                </span>
+                <span className="text-neutral-300 shrink-0 mt-0.5 w-4 h-4">
+                  {expandedCard === i ? <FeatherChevronUp /> : <FeatherChevronDown />}
+                </span>
+              </div>
+              {expandedCard === i && (
+                <pre
+                  className="mt-3 rounded-md px-4 py-3 text-sm leading-relaxed overflow-x-auto"
+                  style={{ backgroundColor: "#1e1e2e", color: "#cdd6f4" }}
+                  dangerouslySetInnerHTML={{ __html: highlightCypher(q.cypher) }}
+                />
+              )}
+            </div>
+          ))}
         </div>
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-24 shadow-lg mobile:px-4 mobile:py-12">
