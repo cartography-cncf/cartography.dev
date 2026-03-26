@@ -29,14 +29,15 @@ function highlightCypher(code: string) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 
-  result = result.replace(/\b(MATCH|RETURN|WHERE|WITH|LIMIT|ORDER BY|CREATE|DELETE|SET|REMOVE|MERGE|OPTIONAL MATCH|UNWIND|AS|AND|OR|NOT|IN|IS|NULL|TRUE|FALSE|CASE|WHEN|THEN|ELSE|END)\b/gi,
-    (m) => placeholder(`<span style="color:#a78bfa;font-weight:600">${m}</span>`));
+  // Properties first — before keywords can match inside them
+  result = result.replace(/\{([^}]+)\}/g,
+    (_, p) => `{${placeholder(`<span style="color:#fcd34d">${p}</span>`)}}`);
   result = result.replace(/\[:([A-Z_]+)\]/g,
     (_, t) => `[:${placeholder(`<span style="color:#fb7185">${t}</span>`)}]`);
   result = result.replace(/:([A-Z][A-Za-z0-9_]*)/g,
     (_, l) => `:${placeholder(`<span style="color:#38bdf8">${l}</span>`)}`);
-  result = result.replace(/\{([^}]+)\}/g,
-    (_, p) => `{${placeholder(`<span style="color:#fcd34d">${p}</span>`)}}`);
+  result = result.replace(/\b(MATCH|RETURN|WHERE|WITH|LIMIT|ORDER BY|CREATE|DELETE|SET|REMOVE|MERGE|OPTIONAL MATCH|UNWIND|AS|AND|OR|NOT|IN|IS|NULL|TRUE|FALSE|CASE|WHEN|THEN|ELSE|END)\b/gi,
+    (m) => placeholder(`<span style="color:#a78bfa;font-weight:600">${m}</span>`));
   result = result.replace(/\b(\d+)\b/g,
     (m) => placeholder(`<span style="color:#34d399">${m}</span>`));
 
