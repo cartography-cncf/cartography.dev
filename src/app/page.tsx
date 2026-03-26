@@ -118,31 +118,27 @@ function About() {
             View on GitHub
           </Button>
         </div>
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-body font-body text-subtext-color text-center">
-            We are a <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">Cloud Native Computing Foundation Sandbox project</a>.
-          </span>
+        <div className="flex items-center gap-3 text-body font-body text-subtext-color">
+          <span>Created at</span>
           <Image
-            className="w-full max-w-[160px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[140px] mobile:flex-none"
-            src="/images/cncf-logo.svg"
-            alt="CNCF logo"
-            width={160}
-            height={160}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col flex-wrap items-center justify-center gap-4 bg-default-background px-6 mobile:px-4 mobile:py-0">
-        <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
-          Created at
-        </h2>
-        <div className="flex flex-wrap items-start justify-center gap-8">
-          <Image
-            className="h-12 w-12 flex-none object-contain"
+            className="h-8 w-8 flex-none object-contain"
             src="/images/lyft-logo.png"
             alt="Lyft logo"
-            width={48}
-            height={48}
+            width={32}
+            height={32}
           />
+          <span>·</span>
+          <span>Now a</span>
+          <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">
+            <Image
+              className="h-12 flex-none object-contain"
+              src="/images/cncf-logo.svg"
+              alt="CNCF logo"
+              width={120}
+              height={48}
+            />
+          </a>
+          <span>Sandbox project</span>
         </div>
       </div>
       <div className="flex flex-col flex-wrap items-center justify-center gap-3 bg-default-background px-6 py-2 mobile:px-4 mobile:py-1">
@@ -207,29 +203,29 @@ function About() {
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
           Questions Cartography answers
         </h2>
-        <div className="grid grid-cols-3 gap-4 max-w-4xl w-full mobile:grid-cols-1">
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
-            <span className="text-heading-3 font-heading-3 text-default-font">
+        <div className="flex flex-wrap justify-center gap-4 max-w-4xl w-full mobile:flex-col">
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
+            <span className="text-body font-body text-default-font">
               Which identities have access to which datastores?
             </span>
           </div>
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
-            <span className="text-heading-3 font-heading-3 text-default-font">
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
+            <span className="text-body font-body text-default-font">
               Am I affected by critical vulnerabilities?
             </span>
           </div>
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
-            <span className="text-heading-3 font-heading-3 text-default-font">
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
+            <span className="text-body font-body text-default-font">
               What are the network paths in and out of my environment?
             </span>
           </div>
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
-            <span className="text-heading-3 font-heading-3 text-default-font">
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
+            <span className="text-body font-body text-default-font">
               Which compute instances are exposed to the internet?
             </span>
           </div>
-          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
-            <span className="text-heading-3 font-heading-3 text-default-font">
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(33.333%-1rem)] mobile:w-full">
+            <span className="text-body font-body text-default-font">
               What AI agents are running in production, and what permissions do they have?
             </span>
           </div>
