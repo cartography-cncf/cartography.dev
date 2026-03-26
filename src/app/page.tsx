@@ -6,21 +6,90 @@ import { Badge } from "@/ui/components/Badge";
 import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { Button } from "@/ui/components/Button";
 import { FeatherPlay } from "@subframe/core";
+import { FeatherBookOpen } from "@subframe/core";
+import { FeatherPause } from "@subframe/core";
 import { FeatherGithub } from "@subframe/core";
-import { IconWithBackground } from "@/ui/components/IconWithBackground";
-import { FeatherDatabase } from "@subframe/core";
-import { FeatherNetwork } from "@subframe/core";
-import { FeatherShieldCheck } from "@subframe/core";
+import { FeatherSlack } from "@subframe/core";
+import { FeatherCalendar } from "@subframe/core";
+import { FeatherChevronDown } from "@subframe/core";
+import { FeatherChevronUp } from "@subframe/core";
 import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
 import { GitHubStars } from "@/ui/components/GitHubStars";
 
+function highlightCypher(code: string) {
+  const tokens: string[] = [];
+  const placeholder = (html: string) => {
+    const id = tokens.length;
+    tokens.push(html);
+    return `\x00T${id}T\x00`;
+  };
+
+  let result = code
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  result = result.replace(/\b(MATCH|RETURN|WHERE|WITH|LIMIT|ORDER BY|CREATE|DELETE|SET|REMOVE|MERGE|OPTIONAL MATCH|UNWIND|AS|AND|OR|NOT|IN|IS|NULL|TRUE|FALSE|CASE|WHEN|THEN|ELSE|END)\b/gi,
+    (m) => placeholder(`<span style="color:#a78bfa;font-weight:600">${m}</span>`));
+  result = result.replace(/\[:([A-Z_]+)\]/g,
+    (_, t) => `[:${placeholder(`<span style="color:#fb7185">${t}</span>`)}]`);
+  result = result.replace(/:([A-Z][A-Za-z0-9_]*)/g,
+    (_, l) => `:${placeholder(`<span style="color:#38bdf8">${l}</span>`)}`);
+  result = result.replace(/\{([^}]+)\}/g,
+    (_, p) => `{${placeholder(`<span style="color:#fcd34d">${p}</span>`)}}`);
+  result = result.replace(/\b(\d+)\b/g,
+    (m) => placeholder(`<span style="color:#34d399">${m}</span>`));
+
+  result = result.replace(/\x00T(\d+)T\x00/g, (_, i) => tokens[parseInt(i)]);
+  return result;
+}
+
+const questions = [
+  {
+    question: "Which identities have access to which datastores?",
+    cypher: `MATCH (a:AWSRole)-[r:CAN_READ]->(b:S3Bucket)\nRETURN * LIMIT 30;`,
+  },
+  {
+    question: "Am I affected by critical vulnerabilities?",
+    cypher: `MATCH (c:CVE)-[r:AFFECTS]->(i:Image)\nRETURN * LIMIT 30;`,
+  },
+  {
+    question: "What are the network paths in and out of my environment?",
+    cypher: `MATCH (dns:DNSRecord)-[r:DNS_POINTS_TO]->(lb:LoadBalancer)--(c:ECSContainer)\nRETURN * LIMIT 30;`,
+  },
+  {
+    question: "Which compute instances are exposed to the internet? How?",
+    cypher: `MATCH p = (inst:EC2Instance{exposed_internet: true})\nMATCH p2 = (inst)-[:MEMBER_OF_EC2_SECURITY_GROUP]->(sg:EC2SecurityGroup)--(r:IpRule)\nRETURN * LIMIT 30;`,
+  },
+  {
+    question: "What AI agents are running in production, and what permissions do they have?",
+    cypher: `MATCH p = (a:AIAgent)-[:DETECTED_IN]->(img:ECRImage)--(:ECRImage)--(c:ECSContainer)\nMATCH p2 = (c)<-[:HAS_CONTAINER]-(t:ECSTask)--(:ECSTaskDefinition)--(rol:AWSRole)\nMATCH p3 = (rol)--(pol:AWSPolicy)--(stmt:AWSPolicyStatement)\nRETURN * LIMIT 3;`,
+  },
+];
+
 function About() {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = React.useState(true);
+  const [expandedCard, setExpandedCard] = React.useState<number | null>(null);
+
+  const toggleVideo = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
   return (
-    <div className="container max-w-none flex w-full flex-col items-center gap-16 bg-default-background mobile:flex-col mobile:flex-nowrap mobile:gap-12">
+    <div className="container max-w-none flex w-full flex-col items-center gap-8 bg-default-background mobile:flex-col mobile:flex-nowrap mobile:gap-6">
       <TopbarWithRightNav
         leftSlot={
           <>
-            <a href="/">
+            <a href="/" className="flex items-center gap-2">
               <Image
                 className="h-6 flex-none object-cover"
                 src="/images/topbar-logo.svg"
@@ -28,8 +97,8 @@ function About() {
                 width={24}
                 height={24}
               />
+              <Badge variant="neutral">Cartography</Badge>
             </a>
-            <Badge variant="neutral">Cartography</Badge>
           </>
         }
         rightSlot={
@@ -49,7 +118,7 @@ function About() {
           </div>
         }
       />
-      <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-24 shadow-lg mobile:px-4 mobile:py-12">
+      <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-8 shadow-lg mobile:px-4 mobile:py-6">
         <div className="flex w-full max-w-[768px] flex-col items-center gap-4">
           <Image
             className="w-full max-w-[448px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[320px] mobile:flex-none"
@@ -63,15 +132,34 @@ function About() {
             Cartography: Open Source Infrastructure Mapping Tool
           </h1>
         </div>
+        <div className="group relative w-full max-w-[768px]">
+          <video
+            ref={videoRef}
+            className="w-full rounded-lg shadow-md"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/video/cartography_demo.mp4" type="video/mp4" />
+          </video>
+          <button
+            onClick={toggleVideo}
+            className="absolute bottom-3 left-3 flex items-center justify-center w-8 h-8 rounded-full bg-black/50 text-white hover:bg-black/70 transition-opacity opacity-0 group-hover:opacity-100"
+            aria-label={isPlaying ? "Pause video" : "Play video"}
+          >
+            <span className="w-4 h-4">{isPlaying ? <FeatherPause /> : <FeatherPlay />}</span>
+          </button>
+        </div>
         <div className="flex items-center gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
           <Button
             size="large"
-            icon={<FeatherPlay />}
+            icon={<FeatherBookOpen />}
             onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-              window.location.href = 'https://cartography-cncf.github.io/cartography/install.html';
+              window.location.href = 'https://cartography-cncf.github.io/cartography/';
             }}
           >
-            Run locally
+            View docs
           </Button>
           <Button
             variant="neutral-secondary"
@@ -85,26 +173,34 @@ function About() {
             View on GitHub
           </Button>
         </div>
-      </div>
-      <div className="flex flex-col flex-wrap items-center justify-center gap-8 bg-default-background px-6 mobile:px-4 mobile:py-0">
-        <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
-          Created at
-        </h2>
-        <div className="flex flex-wrap items-start justify-center gap-8">
+        <div className="flex items-center gap-3 text-body font-body text-subtext-color">
+          <span>Created at</span>
           <Image
-            className="h-12 w-12 flex-none object-contain"
+            className="h-8 w-8 flex-none object-contain"
             src="/images/lyft-logo.png"
             alt="Lyft logo"
-            width={48}
-            height={48}
+            width={32}
+            height={32}
           />
+          <span>·</span>
+          <span>Now a</span>
+          <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">
+            <Image
+              className="h-12 flex-none object-contain"
+              src="/images/cncf-logo.svg"
+              alt="CNCF logo"
+              width={120}
+              height={48}
+            />
+          </a>
+          <span>Sandbox project</span>
         </div>
       </div>
-      <div className="flex flex-col flex-wrap items-center justify-center gap-6 bg-default-background px-6 py-12 mobile:px-4 mobile:py-12">
+      <div className="flex flex-col flex-wrap items-center justify-center gap-3 bg-default-background px-6 py-2 mobile:px-4 mobile:py-1">
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
-          Used by
+          Used by 70+ organizations
         </h2>
-        <div className="flex flex-wrap items-center justify-center gap-7 mobile:gap-4 max-w-4xl mx-auto">
+        <div className="flex flex-wrap items-center justify-center gap-6 mobile:gap-3 max-w-4xl mx-auto">
           <Image
             className="h-16 w-16 flex-none object-contain"
             src="/images/lyft-logo.png"
@@ -136,149 +232,56 @@ function About() {
           <Image
             className="h-32 w-32 flex-none object-contain"
             src="/images/company1.png"
-            alt="Company 1 logo"
+            alt="Corelight logo"
             width={128}
             height={128}
           />
           <Image
             className="h-32 w-32 flex-none object-contain"
             src="/images/company2.png"
-            alt="Company 2 logo"
+            alt="Bird logo"
             width={128}
             height={128}
           />
           <Image
             className="h-32 w-32 flex-none object-contain"
             src="/images/company3.svg"
-            alt="Company 3 logo"
+            alt="Thought Machine logo"
             width={128}
             height={128}
           />
         </div>
-        <span className="text-heading-2 font-heading-2 text-default-font text-center mobile:text-heading-3 mobile:font-heading-3">
-          and many, many others.
-        </span>
       </div>
 
 
-      <div className="flex flex-col flex-wrap items-center justify-center gap-8  mt-4 px-6 mobile:px-4 mobile:py-0">
-          <span className="text-body font-body text-subtext-color text-center">
-            We are a <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">Cloud Native Computing Foundation Sandbox project</a>.
-          </span>
-          <Image
-            className="w-full max-w-[200px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[192px] mobile:flex-none"
-            src="/images/cncf-logo.svg"
-            alt="CNCF logo"
-            width={200}
-            height={200}
-          />
-        </div>
-
-      <div className="flex flex-col flex-wrap items-center justify-center gap-8 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg mobile:px-4 mobile:py-12">
-        <div className="flex flex-col flex-wrap items-start justify-center gap-8">
-          <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
-            Why Cartography?
-          </h2>
-        </div>
-        <div className="flex max-w-[768px] flex-col flex-wrap items-start justify-center gap-8">
-          <span className="text-body font-body text-subtext-color">
-            Cartography lets you explore your infra in a visual way. It is very
-            good at exposing otherwise hidden dependency relationships between
-            your assets so that you may validate assumptions about security
-            risks.
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            Service owners can generate asset reports, Red Teamers can discover
-            attack paths, and Blue Teamers can identify areas for security
-            improvement. All can benefit from using the graph for manual
-            exploration through a web frontend interface, or in an automated
-            fashion by calling the APIs.
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            Cartography was originally created by the security team at Lyft.
-            You can read about its origin story <a href="https://eng.lyft.com/cartography-joins-the-cncf-6f6b7be099a7" target="_blank" className="content-link">here</a>.
-          </span>
-        </div>
-      </div>
-      <div className="flex flex-wrap items-start justify-center gap-8 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg mobile:flex-col mobile:flex-wrap mobile:gap-8 mobile:px-4 mobile:py-12">
-        <div className="flex grow shrink-0 basis-0 flex-wrap items-start justify-center gap-8">
-          <div className="flex min-w-[208px] grow shrink-0 basis-0 flex-col items-start gap-4 mobile:h-auto mobile:min-w-[0px] mobile:grow mobile:shrink-0 mobile:basis-0">
-            <IconWithBackground size="large" icon={<FeatherDatabase />} />
-            <span className="text-heading-2 font-heading-2 text-default-font">
-              Discover assets
-            </span>
-            <span className="text-body font-body text-subtext-color">
-              Automatically discover all your cloud resources across providers
-              and regions.
-            </span>
-          </div>
-        </div>
-        <div className="flex min-w-[208px] grow shrink-0 basis-0 flex-col items-start gap-4 mobile:h-auto mobile:w-full mobile:min-w-[0px] mobile:flex-none">
-          <IconWithBackground
-            variant="success"
-            size="large"
-            icon={<FeatherNetwork />}
-          />
-          <span className="text-heading-2 font-heading-2 text-default-font">
-            Map dependencies
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            Visualize relationships between services, resources, and
-            infrastructure components.
-          </span>
-        </div>
-        <div className="flex min-w-[208px] grow shrink-0 basis-0 flex-col items-start gap-4 mobile:h-auto mobile:w-full mobile:min-w-[0px] mobile:flex-none">
-          <IconWithBackground
-            variant="warning"
-            size="large"
-            icon={<FeatherShieldCheck />}
-          />
-          <span className="text-heading-2 font-heading-2 text-default-font">
-            Find security issues
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            Identify risks and compliance issues through analysis and data
-            enrichment.
-          </span>
-        </div>
-      </div>
-      <div className="flex w-full flex-col flex-wrap items-center justify-center gap-12 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg">
-        <div className="flex flex-col flex-wrap items-start justify-center gap-8">
-          <span className="text-heading-1 font-heading-1 text-default-font text-center">
-            Featured blogs and case studies
-          </span>
-        </div>
-        <div className="flex max-w-[768px] flex-col flex-wrap items-start justify-center gap-8">
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://eng.lyft.com/iam-whatever-you-say-iam-febce59d1e3b" target="_blank" className="content-link">IAM Whatever you say IAM</a>: using cartography to see who has access to
-            what
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://blog.marcolancini.it/2020/blog-mapping-moving-clouds-with-cartography/" target="_blank" className="content-link">Mapping Moving Clouds:
-            How to stay on top of your ephemeral environments with Cartography</a>
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://eng.lyft.com/vulnerability-management-at-lyft-enforcing-the-cascade-part-1-234d1561b994" target="_blank" className="content-link">Vulnerability Management at Lyft: Enforcing the Cascade</a>
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://eng.lyft.com/cartography-joins-the-cncf-6f6b7be099a7" target="_blank" className="content-link">Cartography joins the CNCF</a>
-          </span>
-        </div>
-        <div className="flex flex-col flex-wrap items-center justify-center gap-12">
-          <span className="text-heading-1 font-heading-1 text-default-font text-center">
-            Conference talks
-          </span>
-        </div>
-        <div className="flex max-w-[768px] flex-col flex-wrap items-start justify-center gap-8">
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://www.youtube.com/watch?v=ZukUmZSKSek" target="_blank" className="content-link">Cartography: automating security visibility and democratization (BSides 2019):</a>
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://www.youtube.com/watch?v=ZwMSkFzgiFc" target="_blank" className="content-link">Cartography: using graphs to improve and scale security decision making (CNCF Security Day 2020):</a>            
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            <a href="https://www.youtube.com/watch?v=F4EFHK21Et0" target="_blank" className="content-link">Container vuln management with minimal burnout (BSidesSF2023):</a>
-          </span>
+      <div className="flex w-full flex-col items-center gap-8 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg mobile:px-4 mobile:py-8">
+        <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
+          Questions Cartography answers
+        </h2>
+        <div className="flex flex-wrap justify-center gap-4 max-w-5xl w-full mobile:flex-col">
+          {questions.map((q, i) => (
+            <div
+              key={i}
+              className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(50%-0.5rem)] mobile:w-full cursor-pointer transition-all hover:shadow-md"
+              onClick={() => setExpandedCard(expandedCard === i ? null : i)}
+            >
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-body font-body text-default-font">
+                  {q.question}
+                </span>
+                <span className="text-neutral-300 shrink-0 mt-0.5 w-4 h-4">
+                  {expandedCard === i ? <FeatherChevronUp /> : <FeatherChevronDown />}
+                </span>
+              </div>
+              {expandedCard === i && (
+                <pre
+                  className="mt-3 rounded-md px-4 py-3 text-sm leading-relaxed overflow-x-auto"
+                  style={{ backgroundColor: "#1e1e2e", color: "#cdd6f4" }}
+                  dangerouslySetInnerHTML={{ __html: highlightCypher(q.cypher) }}
+                />
+              )}
+            </div>
+          ))}
         </div>
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-24 shadow-lg mobile:px-4 mobile:py-12">
@@ -291,16 +294,27 @@ function About() {
               View source, read our discussions, join our Slack
             </span>
           </div>
-          <Button
-            size="large"
-            icon={<FeatherGithub />}
-            iconRight={<GitHubStars />}
-            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-              window.location.href = 'https://github.com/cartography-cncf/cartography';
-            }}
-          >
-            View on GitHub
-          </Button>
+          <div className="flex items-center gap-4 mobile:flex-col mobile:gap-3">
+            <Button
+              size="large"
+              icon={<FeatherSlack />}
+              onClick={() => {
+                window.location.href = 'https://communityinviter.com/apps/cloud-native/cncf';
+              }}
+            >
+              #cartography on CNCF Slack
+            </Button>
+            <Button
+              variant="neutral-secondary"
+              size="large"
+              icon={<FeatherCalendar />}
+              onClick={() => {
+                window.location.href = 'https://zoom-lfx.platform.linuxfoundation.org/meetings/cartography?view=week';
+              }}
+            >
+              Monthly community meeting
+            </Button>
+          </div>
         </div>
       </div>
       <TopbarWithCenterNav

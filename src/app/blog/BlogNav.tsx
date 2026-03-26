@@ -10,7 +10,7 @@ export function BlogNav() {
     <TopbarWithRightNav
       leftSlot={
         <>
-          <a href="/">
+          <a href="/" className="flex items-center gap-2">
             <Image
               className="h-6 flex-none object-cover"
               src="/images/topbar-logo.svg"
@@ -18,8 +18,8 @@ export function BlogNav() {
               width={24}
               height={24}
             />
+            <Badge variant="neutral">Cartography</Badge>
           </a>
-          <Badge variant="neutral">Cartography</Badge>
         </>
       }
       rightSlot={
