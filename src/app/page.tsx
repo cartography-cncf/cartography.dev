@@ -16,7 +16,7 @@ import { GitHubStars } from "@/ui/components/GitHubStars";
 
 function About() {
   return (
-    <div className="container max-w-none flex w-full flex-col items-center gap-16 bg-default-background mobile:flex-col mobile:flex-nowrap mobile:gap-12">
+    <div className="container max-w-none flex w-full flex-col items-center gap-8 bg-default-background mobile:flex-col mobile:flex-nowrap mobile:gap-6">
       <TopbarWithRightNav
         leftSlot={
           <>
@@ -49,7 +49,7 @@ function About() {
           </div>
         }
       />
-      <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-24 shadow-lg mobile:px-4 mobile:py-12">
+      <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-8 shadow-lg mobile:px-4 mobile:py-6">
         <div className="flex w-full max-w-[768px] flex-col items-center gap-4">
           <Image
             className="w-full max-w-[448px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[320px] mobile:flex-none"
@@ -63,6 +63,15 @@ function About() {
             Cartography: Open Source Infrastructure Mapping Tool
           </h1>
         </div>
+        <video
+          className="w-full max-w-[768px] rounded-lg shadow-md"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/video/cartography_demo.mp4" type="video/mp4" />
+        </video>
         <div className="flex items-center gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
           <Button
             size="large"
@@ -85,27 +94,18 @@ function About() {
             View on GitHub
           </Button>
         </div>
-        <div className="flex flex-col items-center gap-4 mt-2">
+        <div className="flex flex-col items-center gap-3">
           <span className="text-body font-body text-subtext-color text-center">
             We are a <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">Cloud Native Computing Foundation Sandbox project</a>.
           </span>
           <Image
-            className="w-full max-w-[200px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[192px] mobile:flex-none"
+            className="w-full max-w-[160px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[140px] mobile:flex-none"
             src="/images/cncf-logo.svg"
             alt="CNCF logo"
-            width={200}
-            height={200}
+            width={160}
+            height={160}
           />
         </div>
-        <video
-          className="w-full max-w-[768px] rounded-lg shadow-md"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/video/cartography_demo.mp4" type="video/mp4" />
-        </video>
       </div>
       <div className="flex flex-col flex-wrap items-center justify-center gap-8 bg-default-background px-6 mobile:px-4 mobile:py-0">
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
