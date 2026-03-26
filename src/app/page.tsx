@@ -6,6 +6,7 @@ import { Badge } from "@/ui/components/Badge";
 import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { Button } from "@/ui/components/Button";
 import { FeatherPlay } from "@subframe/core";
+import { FeatherPause } from "@subframe/core";
 import { FeatherGithub } from "@subframe/core";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
 import { FeatherDatabase } from "@subframe/core";
@@ -15,6 +16,21 @@ import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
 import { GitHubStars } from "@/ui/components/GitHubStars";
 
 function About() {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = React.useState(true);
+
+  const toggleVideo = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
   return (
     <div className="container max-w-none flex w-full flex-col items-center gap-8 bg-default-background mobile:flex-col mobile:flex-nowrap mobile:gap-6">
       <TopbarWithRightNav
@@ -63,15 +79,25 @@ function About() {
             Cartography: Open Source Infrastructure Mapping Tool
           </h1>
         </div>
-        <video
-          className="w-full max-w-[768px] rounded-lg shadow-md"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/video/cartography_demo.mp4" type="video/mp4" />
-        </video>
+        <div className="group relative w-full max-w-[768px]">
+          <video
+            ref={videoRef}
+            className="w-full rounded-lg shadow-md"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/video/cartography_demo.mp4" type="video/mp4" />
+          </video>
+          <button
+            onClick={toggleVideo}
+            className="absolute bottom-3 left-3 flex items-center justify-center w-8 h-8 rounded-full bg-black/50 text-white hover:bg-black/70 transition-opacity opacity-0 group-hover:opacity-100"
+            aria-label={isPlaying ? "Pause video" : "Play video"}
+          >
+            <span className="w-4 h-4">{isPlaying ? <FeatherPause /> : <FeatherPlay />}</span>
+          </button>
+        </div>
         <div className="flex items-center gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
           <Button
             size="large"
