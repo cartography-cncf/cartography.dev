@@ -235,11 +235,11 @@ function About() {
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
           Questions Cartography answers
         </h2>
-        <div className="flex flex-wrap justify-center gap-4 max-w-5xl w-full mobile:flex-col">
+        <div className="flex flex-wrap justify-center items-start gap-4 max-w-5xl w-full mobile:flex-col">
           {questions.map((q, i) => (
             <div
               key={i}
-              className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(50%-0.5rem)] mobile:w-full cursor-pointer transition-all hover:shadow-md"
+              className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(50%-0.5rem)] min-h-[5rem] mobile:w-full mobile:min-h-0 cursor-pointer transition-all hover:shadow-md"
               onClick={() => {
                 const next = new Set(expandedCards);
                 if (next.has(i)) next.delete(i); else next.add(i);
