@@ -2,8 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { Badge } from "@/ui/components/Badge";
-import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { Button } from "@/ui/components/Button";
 import { FeatherPlay } from "@subframe/core";
 import { FeatherBookOpen } from "@subframe/core";
@@ -13,7 +11,9 @@ import { FeatherSlack } from "@subframe/core";
 import { FeatherCalendar } from "@subframe/core";
 import { FeatherChevronDown } from "@subframe/core";
 import { FeatherChevronUp } from "@subframe/core";
+import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
+import { SiteNav } from "@/ui/components/SiteNav";
 import { GitHubStars } from "@/ui/components/GitHubStars";
 
 function highlightCypher(code: string) {
@@ -29,14 +29,15 @@ function highlightCypher(code: string) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 
-  result = result.replace(/\b(MATCH|RETURN|WHERE|WITH|LIMIT|ORDER BY|CREATE|DELETE|SET|REMOVE|MERGE|OPTIONAL MATCH|UNWIND|AS|AND|OR|NOT|IN|IS|NULL|TRUE|FALSE|CASE|WHEN|THEN|ELSE|END)\b/gi,
-    (m) => placeholder(`<span style="color:#a78bfa;font-weight:600">${m}</span>`));
+  // Properties first — before keywords can match inside them
+  result = result.replace(/\{([^}]+)\}/g,
+    (_, p) => `{${placeholder(`<span style="color:#fcd34d">${p}</span>`)}}`);
   result = result.replace(/\[:([A-Z_]+)\]/g,
     (_, t) => `[:${placeholder(`<span style="color:#fb7185">${t}</span>`)}]`);
   result = result.replace(/:([A-Z][A-Za-z0-9_]*)/g,
     (_, l) => `:${placeholder(`<span style="color:#38bdf8">${l}</span>`)}`);
-  result = result.replace(/\{([^}]+)\}/g,
-    (_, p) => `{${placeholder(`<span style="color:#fcd34d">${p}</span>`)}}`);
+  result = result.replace(/\b(MATCH|RETURN|WHERE|WITH|LIMIT|ORDER BY|CREATE|DELETE|SET|REMOVE|MERGE|OPTIONAL MATCH|UNWIND|AS|AND|OR|NOT|IN|IS|NULL|TRUE|FALSE|CASE|WHEN|THEN|ELSE|END)\b/gi,
+    (m) => placeholder(`<span style="color:#a78bfa;font-weight:600">${m}</span>`));
   result = result.replace(/\b(\d+)\b/g,
     (m) => placeholder(`<span style="color:#34d399">${m}</span>`));
 
@@ -70,7 +71,7 @@ const questions = [
 function About() {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(true);
-  const [expandedCard, setExpandedCard] = React.useState<number | null>(null);
+  const [expandedCards, setExpandedCards] = React.useState<Set<number>>(new Set());
 
   const toggleVideo = () => {
     const video = videoRef.current;
@@ -86,38 +87,7 @@ function About() {
 
   return (
     <div className="container max-w-none flex w-full flex-col items-center gap-8 bg-default-background mobile:flex-col mobile:flex-nowrap mobile:gap-6">
-      <TopbarWithRightNav
-        leftSlot={
-          <>
-            <a href="/" className="flex items-center gap-2">
-              <Image
-                className="h-6 flex-none object-cover"
-                src="/images/topbar-logo.svg"
-                alt="Cartography logo"
-                width={24}
-                height={24}
-              />
-              <Badge variant="neutral">Cartography</Badge>
-            </a>
-          </>
-        }
-        rightSlot={
-          <div className="flex items-center justify-end gap-2 mobile:flex-row mobile:flex-nowrap mobile:items-center mobile:justify-end mobile:gap-2 mobile:px-2 mobile:py-2">
-            <a href="/">
-              <TopbarWithRightNav.NavItem selected={true}>About</TopbarWithRightNav.NavItem>
-            </a>
-            <a href="/blog">
-              <TopbarWithRightNav.NavItem>Blog</TopbarWithRightNav.NavItem>
-            </a>
-            <a href="/community">
-              <TopbarWithRightNav.NavItem>Community</TopbarWithRightNav.NavItem>
-            </a>
-            <a href="https://cartography-cncf.github.io/cartography/">
-              <TopbarWithRightNav.NavItem>Docs</TopbarWithRightNav.NavItem>
-            </a>
-          </div>
-        }
-      />
+      <SiteNav currentPage="About" />
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-8 shadow-lg mobile:px-4 mobile:py-6">
         <div className="flex w-full max-w-[768px] flex-col items-center gap-4">
           <Image
@@ -173,10 +143,10 @@ function About() {
             View on GitHub
           </Button>
         </div>
-        <div className="flex items-center gap-3 text-body font-body text-subtext-color">
+        <div className="flex items-center gap-2 text-body font-body text-subtext-color whitespace-nowrap mobile:text-caption mobile:font-caption mobile:gap-1.5">
           <span>Created at</span>
           <Image
-            className="h-8 w-8 flex-none object-contain"
+            className="h-8 w-8 flex-none object-contain mobile:h-6 mobile:w-6"
             src="/images/lyft-logo.png"
             alt="Lyft logo"
             width={32}
@@ -186,7 +156,7 @@ function About() {
           <span>Now a</span>
           <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">
             <Image
-              className="h-12 flex-none object-contain"
+              className="h-12 flex-none object-contain mobile:h-8"
               src="/images/cncf-logo.svg"
               alt="CNCF logo"
               width={120}
@@ -207,6 +177,13 @@ function About() {
             alt="Lyft logo"
             width={64}
             height={64}
+          />
+          <Image
+            className="h-32 w-32 flex-none object-contain"
+            src="/images/superhuman.png"
+            alt="Superhuman logo"
+            width={128}
+            height={128}
           />
           <Image
             className="h-32 w-32 flex-none object-contain"
@@ -258,22 +235,26 @@ function About() {
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
           Questions Cartography answers
         </h2>
-        <div className="flex flex-wrap justify-center gap-4 max-w-5xl w-full mobile:flex-col">
+        <div className="flex flex-wrap justify-center items-start gap-4 max-w-5xl w-full mobile:flex-col">
           {questions.map((q, i) => (
             <div
               key={i}
-              className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(50%-0.5rem)] mobile:w-full cursor-pointer transition-all hover:shadow-md"
-              onClick={() => setExpandedCard(expandedCard === i ? null : i)}
+              className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(50%-0.5rem)] min-h-[5rem] mobile:w-full mobile:min-h-0 cursor-pointer transition-all hover:shadow-md"
+              onClick={() => {
+                const next = new Set(expandedCards);
+                if (next.has(i)) next.delete(i); else next.add(i);
+                setExpandedCards(next);
+              }}
             >
               <div className="flex items-start justify-between gap-2">
                 <span className="text-body font-body text-default-font">
                   {q.question}
                 </span>
                 <span className="text-neutral-300 shrink-0 mt-0.5 w-4 h-4">
-                  {expandedCard === i ? <FeatherChevronUp /> : <FeatherChevronDown />}
+                  {expandedCards.has(i) ? <FeatherChevronUp /> : <FeatherChevronDown />}
                 </span>
               </div>
-              {expandedCard === i && (
+              {expandedCards.has(i) && (
                 <pre
                   className="mt-3 rounded-md px-4 py-3 text-sm leading-relaxed overflow-x-auto"
                   style={{ backgroundColor: "#1e1e2e", color: "#cdd6f4" }}
