@@ -180,6 +180,13 @@ function About() {
           />
           <Image
             className="h-32 w-32 flex-none object-contain"
+            src="/images/superhuman.png"
+            alt="Superhuman logo"
+            width={128}
+            height={128}
+          />
+          <Image
+            className="h-32 w-32 flex-none object-contain"
             src="/images/intel-logo.png"
             alt="Intel logo"
             width={128}
