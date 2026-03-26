@@ -85,6 +85,27 @@ function About() {
             View on GitHub
           </Button>
         </div>
+        <div className="flex flex-col items-center gap-4 mt-2">
+          <span className="text-body font-body text-subtext-color text-center">
+            We are a <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">Cloud Native Computing Foundation Sandbox project</a>.
+          </span>
+          <Image
+            className="w-full max-w-[200px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[192px] mobile:flex-none"
+            src="/images/cncf-logo.svg"
+            alt="CNCF logo"
+            width={200}
+            height={200}
+          />
+        </div>
+        <video
+          className="w-full max-w-[768px] rounded-lg shadow-md"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/video/cartography_demo.mp4" type="video/mp4" />
+        </video>
       </div>
       <div className="flex flex-col flex-wrap items-center justify-center gap-8 bg-default-background px-6 mobile:px-4 mobile:py-0">
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
@@ -100,11 +121,11 @@ function About() {
           />
         </div>
       </div>
-      <div className="flex flex-col flex-wrap items-center justify-center gap-6 bg-default-background px-6 py-12 mobile:px-4 mobile:py-12">
+      <div className="flex flex-col flex-wrap items-center justify-center gap-4 bg-default-background px-6 py-6 mobile:px-4 mobile:py-4">
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
-          Used by
+          Used by 70+ organizations
         </h2>
-        <div className="flex flex-wrap items-center justify-center gap-7 mobile:gap-4 max-w-4xl mx-auto">
+        <div className="flex flex-wrap items-center justify-center gap-6 mobile:gap-3 max-w-4xl mx-auto">
           <Image
             className="h-16 w-16 flex-none object-contain"
             src="/images/lyft-logo.png"
@@ -136,43 +157,27 @@ function About() {
           <Image
             className="h-32 w-32 flex-none object-contain"
             src="/images/company1.png"
-            alt="Company 1 logo"
+            alt="Corelight logo"
             width={128}
             height={128}
           />
           <Image
             className="h-32 w-32 flex-none object-contain"
             src="/images/company2.png"
-            alt="Company 2 logo"
+            alt="Bird logo"
             width={128}
             height={128}
           />
           <Image
             className="h-32 w-32 flex-none object-contain"
             src="/images/company3.svg"
-            alt="Company 3 logo"
+            alt="Thought Machine logo"
             width={128}
             height={128}
           />
         </div>
-        <span className="text-heading-2 font-heading-2 text-default-font text-center mobile:text-heading-3 mobile:font-heading-3">
-          and many, many others.
-        </span>
       </div>
 
-
-      <div className="flex flex-col flex-wrap items-center justify-center gap-8  mt-4 px-6 mobile:px-4 mobile:py-0">
-          <span className="text-body font-body text-subtext-color text-center">
-            We are a <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">Cloud Native Computing Foundation Sandbox project</a>.
-          </span>
-          <Image
-            className="w-full max-w-[200px] flex-none mobile:h-auto mobile:w-full mobile:max-w-[192px] mobile:flex-none"
-            src="/images/cncf-logo.svg"
-            alt="CNCF logo"
-            width={200}
-            height={200}
-          />
-        </div>
 
       <div className="flex flex-col flex-wrap items-center justify-center gap-8 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg mobile:px-4 mobile:py-12">
         <div className="flex flex-col flex-wrap items-start justify-center gap-8">
