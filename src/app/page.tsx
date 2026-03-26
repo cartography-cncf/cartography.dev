@@ -103,10 +103,10 @@ function About() {
             size="large"
             icon={<FeatherPlay />}
             onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-              window.location.href = 'https://cartography-cncf.github.io/cartography/install.html';
+              window.location.href = 'https://cartography-cncf.github.io/cartography/';
             }}
           >
-            Run locally
+            View docs
           </Button>
           <Button
             variant="neutral-secondary"
