@@ -32,14 +32,14 @@ function Community() {
         className="mobile:flex"
         leftSlot={
           <>
-            <a href="/">
+            <a href="/" className="flex items-center gap-2">
               <img
                 className="h-6 flex-none object-cover"
                 src="/images/topbar-logo.svg"
                 alt="Cartography logo"
               />
+              <Badge variant="neutral">Cartography</Badge>
             </a>
-            <Badge variant="neutral">Cartography</Badge>
           </>
         }
         rightSlot={
