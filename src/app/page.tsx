@@ -8,10 +8,6 @@ import { Button } from "@/ui/components/Button";
 import { FeatherPlay } from "@subframe/core";
 import { FeatherPause } from "@subframe/core";
 import { FeatherGithub } from "@subframe/core";
-import { IconWithBackground } from "@/ui/components/IconWithBackground";
-import { FeatherDatabase } from "@subframe/core";
-import { FeatherNetwork } from "@subframe/core";
-import { FeatherShieldCheck } from "@subframe/core";
 import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
 import { GitHubStars } from "@/ui/components/GitHubStars";
 
@@ -133,7 +129,7 @@ function About() {
           />
         </div>
       </div>
-      <div className="flex flex-col flex-wrap items-center justify-center gap-8 bg-default-background px-6 mobile:px-4 mobile:py-0">
+      <div className="flex flex-col flex-wrap items-center justify-center gap-4 bg-default-background px-6 mobile:px-4 mobile:py-0">
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
           Created at
         </h2>
@@ -147,7 +143,7 @@ function About() {
           />
         </div>
       </div>
-      <div className="flex flex-col flex-wrap items-center justify-center gap-4 bg-default-background px-6 py-6 mobile:px-4 mobile:py-4">
+      <div className="flex flex-col flex-wrap items-center justify-center gap-3 bg-default-background px-6 py-2 mobile:px-4 mobile:py-1">
         <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
           Used by 70+ organizations
         </h2>
@@ -205,72 +201,36 @@ function About() {
       </div>
 
 
-      <div className="flex flex-col flex-wrap items-center justify-center gap-8 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg mobile:px-4 mobile:py-12">
-        <div className="flex flex-col flex-wrap items-start justify-center gap-8">
-          <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
-            Why Cartography?
-          </h2>
-        </div>
-        <div className="flex max-w-[768px] flex-col flex-wrap items-start justify-center gap-8">
-          <span className="text-body font-body text-subtext-color">
-            Cartography lets you explore your infra in a visual way. It is very
-            good at exposing otherwise hidden dependency relationships between
-            your assets so that you may validate assumptions about security
-            risks.
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            Service owners can generate asset reports, Red Teamers can discover
-            attack paths, and Blue Teamers can identify areas for security
-            improvement. All can benefit from using the graph for manual
-            exploration through a web frontend interface, or in an automated
-            fashion by calling the APIs.
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            Cartography was originally created by the security team at Lyft.
-            You can read about its origin story <a href="https://eng.lyft.com/cartography-joins-the-cncf-6f6b7be099a7" target="_blank" className="content-link">here</a>.
-          </span>
-        </div>
-      </div>
-      <div className="flex flex-wrap items-start justify-center gap-8 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg mobile:flex-col mobile:flex-wrap mobile:gap-8 mobile:px-4 mobile:py-12">
-        <div className="flex grow shrink-0 basis-0 flex-wrap items-start justify-center gap-8">
-          <div className="flex min-w-[208px] grow shrink-0 basis-0 flex-col items-start gap-4 mobile:h-auto mobile:min-w-[0px] mobile:grow mobile:shrink-0 mobile:basis-0">
-            <IconWithBackground size="large" icon={<FeatherDatabase />} />
-            <span className="text-heading-2 font-heading-2 text-default-font">
-              Discover assets
-            </span>
-            <span className="text-body font-body text-subtext-color">
-              Automatically discover all your cloud resources across providers
-              and regions.
+      <div className="flex w-full flex-col items-center gap-8 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg mobile:px-4 mobile:py-8">
+        <h2 className="text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-2 mobile:font-heading-2">
+          Questions Cartography answers
+        </h2>
+        <div className="grid grid-cols-3 gap-4 max-w-4xl w-full mobile:grid-cols-1">
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
+            <span className="text-heading-3 font-heading-3 text-default-font">
+              Which identities have access to which datastores?
             </span>
           </div>
-        </div>
-        <div className="flex min-w-[208px] grow shrink-0 basis-0 flex-col items-start gap-4 mobile:h-auto mobile:w-full mobile:min-w-[0px] mobile:flex-none">
-          <IconWithBackground
-            variant="success"
-            size="large"
-            icon={<FeatherNetwork />}
-          />
-          <span className="text-heading-2 font-heading-2 text-default-font">
-            Map dependencies
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            Visualize relationships between services, resources, and
-            infrastructure components.
-          </span>
-        </div>
-        <div className="flex min-w-[208px] grow shrink-0 basis-0 flex-col items-start gap-4 mobile:h-auto mobile:w-full mobile:min-w-[0px] mobile:flex-none">
-          <IconWithBackground
-            variant="warning"
-            size="large"
-            icon={<FeatherShieldCheck />}
-          />
-          <span className="text-heading-2 font-heading-2 text-default-font">
-            Find security issues
-          </span>
-          <span className="text-body font-body text-subtext-color">
-            Identify risks and compliance issues through analysis and data
-            enrichment.
-          </span>
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
+            <span className="text-heading-3 font-heading-3 text-default-font">
+              Am I affected by critical vulnerabilities?
+            </span>
+          </div>
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
+            <span className="text-heading-3 font-heading-3 text-default-font">
+              What are the network paths in and out of my environment?
+            </span>
+          </div>
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
+            <span className="text-heading-3 font-heading-3 text-default-font">
+              Which compute instances are exposed to the internet?
+            </span>
+          </div>
+          <div className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4">
+            <span className="text-heading-3 font-heading-3 text-default-font">
+              What AI agents are running in production, and what permissions do they have?
+            </span>
+          </div>
         </div>
       </div>
       <div className="flex w-full flex-col flex-wrap items-center justify-center gap-12 rounded-lg bg-neutral-50 px-6 py-12 shadow-lg">
