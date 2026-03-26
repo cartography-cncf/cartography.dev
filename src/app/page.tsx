@@ -2,8 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { Badge } from "@/ui/components/Badge";
-import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { Button } from "@/ui/components/Button";
 import { FeatherPlay } from "@subframe/core";
 import { FeatherBookOpen } from "@subframe/core";
@@ -13,7 +11,9 @@ import { FeatherSlack } from "@subframe/core";
 import { FeatherCalendar } from "@subframe/core";
 import { FeatherChevronDown } from "@subframe/core";
 import { FeatherChevronUp } from "@subframe/core";
+import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
+import { SiteNav } from "@/ui/components/SiteNav";
 import { GitHubStars } from "@/ui/components/GitHubStars";
 
 function highlightCypher(code: string) {
@@ -87,38 +87,7 @@ function About() {
 
   return (
     <div className="container max-w-none flex w-full flex-col items-center gap-8 bg-default-background mobile:flex-col mobile:flex-nowrap mobile:gap-6">
-      <TopbarWithRightNav
-        leftSlot={
-          <>
-            <a href="/" className="flex items-center gap-2">
-              <Image
-                className="h-6 flex-none object-cover"
-                src="/images/topbar-logo.svg"
-                alt="Cartography logo"
-                width={24}
-                height={24}
-              />
-              <Badge variant="neutral">Cartography</Badge>
-            </a>
-          </>
-        }
-        rightSlot={
-          <div className="flex items-center justify-end gap-2 mobile:flex-row mobile:flex-nowrap mobile:items-center mobile:justify-end mobile:gap-2 mobile:px-2 mobile:py-2">
-            <a href="/">
-              <TopbarWithRightNav.NavItem selected={true}>About</TopbarWithRightNav.NavItem>
-            </a>
-            <a href="/blog">
-              <TopbarWithRightNav.NavItem>Blog</TopbarWithRightNav.NavItem>
-            </a>
-            <a href="/community">
-              <TopbarWithRightNav.NavItem>Community</TopbarWithRightNav.NavItem>
-            </a>
-            <a href="https://cartography-cncf.github.io/cartography/">
-              <TopbarWithRightNav.NavItem>Docs</TopbarWithRightNav.NavItem>
-            </a>
-          </div>
-        }
-      />
+      <SiteNav currentPage="About" />
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 px-6 py-8 shadow-lg mobile:px-4 mobile:py-6">
         <div className="flex w-full max-w-[768px] flex-col items-center gap-4">
           <Image
@@ -174,10 +143,10 @@ function About() {
             View on GitHub
           </Button>
         </div>
-        <div className="flex items-center gap-3 text-body font-body text-subtext-color">
+        <div className="flex items-center gap-2 text-body font-body text-subtext-color whitespace-nowrap mobile:text-caption mobile:font-caption mobile:gap-1.5">
           <span>Created at</span>
           <Image
-            className="h-8 w-8 flex-none object-contain"
+            className="h-8 w-8 flex-none object-contain mobile:h-6 mobile:w-6"
             src="/images/lyft-logo.png"
             alt="Lyft logo"
             width={32}
@@ -187,7 +156,7 @@ function About() {
           <span>Now a</span>
           <a href="https://www.cncf.io/projects/cartography/" target="_blank" className="content-link">
             <Image
-              className="h-12 flex-none object-contain"
+              className="h-12 flex-none object-contain mobile:h-8"
               src="/images/cncf-logo.svg"
               alt="CNCF logo"
               width={120}

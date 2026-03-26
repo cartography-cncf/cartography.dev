@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Badge } from "@/ui/components/Badge";
-import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
+import { SiteNav } from "@/ui/components/SiteNav";
 
 function Community() {
   // Guidance: descriptions here should be short and plainly stated. No marketing speak.
@@ -28,37 +27,7 @@ function Community() {
 
   return (
     <div className="container max-w-none flex w-full flex-col items-center gap-6 bg-default-background">
-      <TopbarWithRightNav
-        className="mobile:flex"
-        leftSlot={
-          <>
-            <a href="/" className="flex items-center gap-2">
-              <img
-                className="h-6 flex-none object-cover"
-                src="/images/topbar-logo.svg"
-                alt="Cartography logo"
-              />
-              <Badge variant="neutral">Cartography</Badge>
-            </a>
-          </>
-        }
-        rightSlot={
-          <div className="flex items-center justify-end gap-2 mobile:px-2 mobile:py-2">
-            <a href="/">
-              <TopbarWithRightNav.NavItem>About</TopbarWithRightNav.NavItem>
-            </a>
-            <a href="/blog">
-              <TopbarWithRightNav.NavItem>Blog</TopbarWithRightNav.NavItem>
-            </a>
-            <a href="/community">
-              <TopbarWithRightNav.NavItem selected={true}>Community</TopbarWithRightNav.NavItem>
-            </a>
-            <a href="https://cartography-cncf.github.io/cartography/">
-              <TopbarWithRightNav.NavItem>Docs</TopbarWithRightNav.NavItem>
-            </a>
-          </div>
-        }
-      />
+      <SiteNav currentPage="Community" />
       <div className="flex flex-col items-start gap-6">
         <div className="flex flex-col flex-wrap items-start justify-center gap-6 bg-default-background px-6 py-12">
           <span className="text-heading-1 font-heading-1 text-default-font text-center">
