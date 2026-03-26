@@ -8,6 +8,8 @@ import { Button } from "@/ui/components/Button";
 import { FeatherPlay } from "@subframe/core";
 import { FeatherPause } from "@subframe/core";
 import { FeatherGithub } from "@subframe/core";
+import { FeatherSlack } from "@subframe/core";
+import { FeatherCalendar } from "@subframe/core";
 import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
 import { GitHubStars } from "@/ui/components/GitHubStars";
 
@@ -243,16 +245,27 @@ function About() {
               View source, read our discussions, join our Slack
             </span>
           </div>
-          <Button
-            size="large"
-            icon={<FeatherGithub />}
-            iconRight={<GitHubStars />}
-            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-              window.location.href = 'https://github.com/cartography-cncf/cartography';
-            }}
-          >
-            View on GitHub
-          </Button>
+          <div className="flex items-center gap-4 mobile:flex-col mobile:gap-3">
+            <Button
+              size="large"
+              icon={<FeatherSlack />}
+              onClick={() => {
+                window.location.href = 'https://communityinviter.com/apps/cloud-native/cncf';
+              }}
+            >
+              #cartography on CNCF Slack
+            </Button>
+            <Button
+              variant="neutral-secondary"
+              size="large"
+              icon={<FeatherCalendar />}
+              onClick={() => {
+                window.location.href = 'https://zoom-lfx.platform.linuxfoundation.org/meetings/cartography?view=week';
+              }}
+            >
+              Monthly community meeting
+            </Button>
+          </div>
         </div>
       </div>
       <TopbarWithCenterNav
