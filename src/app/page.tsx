@@ -71,7 +71,7 @@ const questions = [
 function About() {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(true);
-  const [expandedCard, setExpandedCard] = React.useState<number | null>(null);
+  const [expandedCards, setExpandedCards] = React.useState<Set<number>>(new Set());
 
   const toggleVideo = () => {
     const video = videoRef.current;
@@ -240,17 +240,21 @@ function About() {
             <div
               key={i}
               className="rounded-lg bg-white border-l-4 border-brand-600 px-5 py-4 w-[calc(50%-0.5rem)] mobile:w-full cursor-pointer transition-all hover:shadow-md"
-              onClick={() => setExpandedCard(expandedCard === i ? null : i)}
+              onClick={() => {
+                const next = new Set(expandedCards);
+                if (next.has(i)) next.delete(i); else next.add(i);
+                setExpandedCards(next);
+              }}
             >
               <div className="flex items-start justify-between gap-2">
                 <span className="text-body font-body text-default-font">
                   {q.question}
                 </span>
                 <span className="text-neutral-300 shrink-0 mt-0.5 w-4 h-4">
-                  {expandedCard === i ? <FeatherChevronUp /> : <FeatherChevronDown />}
+                  {expandedCards.has(i) ? <FeatherChevronUp /> : <FeatherChevronDown />}
                 </span>
               </div>
-              {expandedCard === i && (
+              {expandedCards.has(i) && (
                 <pre
                   className="mt-3 rounded-md px-4 py-3 text-sm leading-relaxed overflow-x-auto"
                   style={{ backgroundColor: "#1e1e2e", color: "#cdd6f4" }}
