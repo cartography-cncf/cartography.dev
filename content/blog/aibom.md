@@ -1,10 +1,11 @@
 ---
-title: "Mapping production AI agents to IAM roles, tools, and network exposure"
+title: "Cartography inventories AI agents in cloud environments"
 date: "2026-03-12"
 summary: "Open source Cartography now discovers AI agents in container images and connects them to IAM roles, tools, and network exposure in the infrastructure graph."
 author: "Alex Chantavy"
 authorUrl: "https://www.linkedin.com/in/alexchantavy"
 ---
+![Cartography AIBOM](/images/aibom/ai-agent-mermaid.png)
 
 Everyone is excited about AI agents because of what they can do on their own, but if you look at what an agent actually is at the infrastructure level, **it looks a lot like a microservice**:
 
@@ -18,7 +19,12 @@ As an industry we've mostly solved microservice visibility with cloud APIs, serv
 
 Most teams aren't tracking which of their services run AI agents, what tools those agents have declared, what IAM roles they assume, or whether they're exposed to the internet; The capabilities to do this broadly just aren't there yet. This means that when there is an incident, **there's no fast way to enumerate the agents** that are affected or what they can reach.
 
-We're thrilled to share that open source **[Cartography](https://github.com/cartography-cncf/cartography) can now answer all of these questions**. We scan container images for AI components - agents, models, tools, memory, prompts - and map them directly into the infrastructure graph alongside everything else Cartography already tracks.
+We're thrilled to share that open source **[Cartography](https://github.com/cartography-cncf/cartography) can now answer all of these questions**. 
+
+1. We scan container images for AI components - agents, models, tools, memory, prompts, etc. and
+2. we map them directly into the infrastructure graph alongside everything else Cartography already tracks.
+
+
 
 Because this is built in open source, teams can inspect the schema, run the queries themselves, and extend the data model as the agent ecosystem evolves.
 
