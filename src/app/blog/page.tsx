@@ -8,12 +8,16 @@ export const metadata: Metadata = {
   title: "Blog | Cartography",
   description:
     "Project updates, technical deep dives, and community stories from the Cartography team.",
+  alternates: {
+    canonical: "/blog",
+  },
   openGraph: {
     title: "Cartography Blog",
     description:
       "Project updates, technical deep dives, and community stories from the Cartography team.",
     type: "website",
     siteName: "Cartography",
+    url: "/blog",
   },
   twitter: {
     card: "summary_large_image",

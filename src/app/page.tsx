@@ -15,6 +15,7 @@ import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { TopbarWithCenterNav } from "@/ui/components/TopbarWithCenterNav";
 import { SiteNav } from "@/ui/components/SiteNav";
 import { GitHubStars } from "@/ui/components/GitHubStars";
+import { DOCS_URL } from "@/lib/site";
 
 function highlightCypher(code: string) {
   const tokens: string[] = [];
@@ -126,7 +127,7 @@ function About() {
             size="large"
             icon={<FeatherBookOpen />}
             onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-              window.location.href = 'https://cartography-cncf.github.io/cartography/';
+              window.location.href = DOCS_URL;
             }}
           >
             View docs
@@ -313,7 +314,7 @@ function About() {
               <a href="/community">
                 <TopbarWithRightNav.NavItem>Community</TopbarWithRightNav.NavItem>
               </a>
-              <a href="https://cartography-cncf.github.io/cartography/">
+              <a href={DOCS_URL}>
                 <TopbarWithRightNav.NavItem>Docs</TopbarWithRightNav.NavItem>
               </a>
             </div>
@@ -331,4 +332,4 @@ function About() {
   );
 }
 
-export default About; 
+export default About;

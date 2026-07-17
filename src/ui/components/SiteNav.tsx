@@ -5,12 +5,13 @@ import Image from "next/image";
 import { Badge } from "@/ui/components/Badge";
 import { TopbarWithRightNav } from "@/ui/components/TopbarWithRightNav";
 import { FeatherMenu, FeatherX } from "@subframe/core";
+import { DOCS_URL } from "@/lib/site";
 
 const navLinks = [
   { href: "/", label: "About" },
   { href: "/blog", label: "Blog" },
   { href: "/community", label: "Community" },
-  { href: "https://cartography-cncf.github.io/cartography/", label: "Docs" },
+  { href: DOCS_URL, label: "Docs" },
 ];
 
 export function SiteNav({ currentPage }: { currentPage: string }) {

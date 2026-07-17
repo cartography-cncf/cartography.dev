@@ -1,0 +1,10 @@
+# Cartography
+
+> Cartography is an open source Python tool that consolidates infrastructure assets and their relationships in a Neo4j graph database.
+
+## Primary resources
+
+- [Documentation](https://docs.cartography.dev/): Installation, configuration, supported integrations, and development guides.
+- [GitHub repository](https://github.com/cartography-cncf/cartography): Source code, releases, issues, and contribution guidelines.
+- [Blog](https://cartography.dev/blog): Project updates, technical articles, and community stories.
+- [Community](https://cartography.dev/community): Community meetings, Slack, security reporting, and commercial support.
