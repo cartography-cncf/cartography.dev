@@ -1,10 +1,29 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
+
+const description =
+  "Cartography is an open source tool that maps your infrastructure, helping you visualize relationships between services, resources, and infrastructure components.";
 
 export const metadata: Metadata = {
   title: "Cartography - Open Source Infrastructure Mapping Tool",
-  description: "Cartography is an open source tool that maps your infrastructure, helping you visualize relationships between services, resources, and infrastructure components.",
-  metadataBase: new URL('https://cartography.dev'),
+  description,
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Cartography - Open Source Infrastructure Mapping Tool",
+    description,
+    url: "/",
+    siteName: "Cartography",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cartography - Open Source Infrastructure Mapping Tool",
+    description,
+  },
   icons: {
     icon: [
       {
